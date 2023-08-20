@@ -18,4 +18,8 @@ export class TodoFormComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  onTodoSubmit(todoForm: any) {
+    console.log(todoForm.value)
+  }
 }

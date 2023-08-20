@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-6 mt-4">
-            <form class="" [formGroup]="todoForm">
+            <form class="" [formGroup]="todoForm" (ngSubmit)="onTodoSubmit(todoForm)">
                 <div class="form-group">
                     <label class="form-label">Name</label>
                     <input type="text" name="name" formControlName="name" class="form-control shadow-none rounded-1"
