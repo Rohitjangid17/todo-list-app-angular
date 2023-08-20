@@ -21,22 +21,25 @@
 
         <!-- Row start here -->
         <div class="bg-white todo-list-screen">
-            <div class="todo-list-row border-bottom inventory-grid">
-                <!-- ID Row -->
-                <div>1</div>
+            <ng-container *ngFor="let todo of todoList">
+                <div class="todo-list-row border-bottom inventory-grid">
+                    <!-- ID Row -->
+                    <div>{{todo?.id}}</div>
 
-                <!-- Name Row -->
-                <div>Rohit Jangid</div>
+                    <!-- Name Row -->
+                    <div>{{todo?.name}}</div>
 
-                <!-- Email Row -->
-                <div>abc123@gmail.com</div>
+                    <!-- Email Row -->
+                    <div>{{todo?.emailId}}</div>
 
-                <!-- Mobile Number Row -->
-                <div>1234567890</div>
+                    <!-- Mobile Number Row -->
+                    <div>{{todo?.phoneNumber}}</div>
 
-                <!-- Action Row -->
-                <div>Action</div>
-            </div>
+                    <!-- Action Row -->
+                    <div>Action</div>
+                </div>
+            </ng-container>
+
         </div>
         <!-- Row end here -->
     </div>
