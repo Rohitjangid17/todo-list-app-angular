@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
+import { Todo } from 'src/app/shared/interface/common';
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
@@ -19,7 +20,7 @@ export class TodoFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onTodoSubmit(todoForm: any) {
-    console.log(todoForm.value)
+  onTodoSubmit(todoForm: Todo) {
+    console.log(todoForm)
   }
 }
