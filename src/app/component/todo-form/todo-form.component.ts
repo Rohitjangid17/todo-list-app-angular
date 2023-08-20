@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
-import { Todo } from 'src/app/shared/interface/common';
+import { Todo, TodoList } from 'src/app/shared/interface/common';
+import { TodoService } from 'src/app/shared/service/todo.service';
 @Component({
   selector: 'app-todo-form',
   templateUrl: './todo-form.component.html',
@@ -8,8 +9,12 @@ import { Todo } from 'src/app/shared/interface/common';
 })
 export class TodoFormComponent implements OnInit {
   todoForm: FormGroup;
+  todoId: number = 1;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    private _todoService: TodoService
+  ) {
     this.todoForm = this._formBuilder.group({
       name: ["", Validators.required],
       emailId: ["", Validators.required],
@@ -20,7 +25,16 @@ export class TodoFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onTodoSubmit(todoForm: Todo) {
-    console.log(todoForm)
+  onTodoSubmit() {
+    let todoRes: TodoList = {
+      id: this.todoId++,
+      name: this.todoForm.get('name')?.value,
+      emailId: this.todoForm.get('emailId')?.value,
+      phoneNumber: this.todoForm.get('phoneNumber')?.value
+    }
+
+    this._todoService.todoAdd(todoRes).subscribe((todoResponse: Todo) => {
+      console.log(todoResponse);
+    })
   }
 }
