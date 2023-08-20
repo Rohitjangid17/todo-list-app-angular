@@ -6,11 +6,13 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { TodoFormComponent } from './component/todo-form/todo-form.component';
+import { TodoScreenComponent } from './component/todo-screen/todo-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoFormComponent
+    TodoFormComponent,
+    TodoScreenComponent
   ],
   imports: [
     BrowserModule,
