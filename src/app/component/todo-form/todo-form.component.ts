@@ -26,14 +26,14 @@ export class TodoFormComponent implements OnInit {
   }
 
   onTodoSubmit() {
-    let todoRes: TodoList = {
+    let todoListData: TodoList = {
       id: this.todoId++,
       name: this.todoForm.get('name')?.value,
       emailId: this.todoForm.get('emailId')?.value,
       phoneNumber: this.todoForm.get('phoneNumber')?.value
     }
 
-    this._todoService.todoAdd(todoRes).subscribe((todoResponse: Todo) => {
+    this._todoService.todoAdd(todoListData).subscribe((todoResponse: Todo) => {
       console.log(todoResponse);
     })
   }
