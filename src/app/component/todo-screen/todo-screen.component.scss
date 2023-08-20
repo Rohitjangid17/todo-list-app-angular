@@ -1,6 +1,10 @@
+.todo-list-container {
+    border-radius: 15px;
+}
+
 .todo-list-scroll {
     display: grid;
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .inventory-grid {
@@ -11,9 +15,16 @@
     background-color: white;
 }
 
+.todo-list-header {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
 .todo-list-screen {
     height: 26vh;
     overflow-y: overlay;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 @media (min-width: 576px) {
