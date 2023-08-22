@@ -23,7 +23,6 @@ export class TodoScreenComponent implements OnInit {
 
   onGetTodoList() {
     this._todoService.getTodoList().subscribe((todoListResponse) => {
-      console.log(todoListResponse)
       this.todoList = todoListResponse;
     })
   }

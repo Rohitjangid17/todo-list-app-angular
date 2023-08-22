@@ -22,7 +22,6 @@ export class TodoService {
       for (const key in responseData) {
         if (responseData.hasOwnProperty(key)) {
           postsArray.push({ ...responseData[key] });
-          console.log(postsArray)
         }
       }
       return postsArray;
