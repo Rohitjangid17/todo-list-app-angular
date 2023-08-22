@@ -5,7 +5,6 @@ export interface Todo {
 }
 
 export interface TodoList {
-    id: number
     name: string
     emailId: string
     phoneNumber: string

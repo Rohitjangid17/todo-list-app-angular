@@ -16,12 +16,13 @@ export class TodoService {
     return this._httpClient.post<TodoList>('https://todo-list-app-angular-458ff-default-rtdb.firebaseio.com/todoList.json', TodoData)
   }
 
-  getTodoList(): Observable<any> {
+  getTodoList(): Observable<Array<TodoList>> {
     return this._httpClient.get<{ [key: string]: TodoList }>('https://todo-list-app-angular-458ff-default-rtdb.firebaseio.com/todoList.json').pipe(map(responseData => {
-      const postsArray = [];
+      let postsArray:TodoList[] = [];
       for (const key in responseData) {
         if (responseData.hasOwnProperty(key)) {
-          postsArray.push({ ...responseData[key] })
+          postsArray.push({ ...responseData[key] });
+          console.log(postsArray)
         }
       }
       return postsArray;
