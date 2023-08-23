@@ -4,7 +4,7 @@ export interface TodoDetails {
     phoneNumber: string
 }
 
-export interface TodoListId {
+export interface TodoList {
     name: string
     emailId: string
     phoneNumber: string

@@ -1,5 +1,5 @@
 import {  ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import {  TodoListId } from 'src/app/shared/interface/common';
+import {  TodoList } from 'src/app/shared/interface/common';
 import { TodoService } from 'src/app/shared/service/todo.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { TodoService } from 'src/app/shared/service/todo.service';
   styleUrls: ['./todo-screen.component.scss']
 })
 export class TodoScreenComponent implements OnInit {
-  todoList: TodoListId[] = [];
+  todoList: TodoList[] = [];
 
   constructor(
     private _todoService: TodoService,
@@ -19,17 +19,15 @@ export class TodoScreenComponent implements OnInit {
     this.onGetTodoList();
   }
 
-
   onGetTodoList() {
-    this._todoService.getTodoList().subscribe((todoListResponse: Array<TodoListId>) => {
-      console.log(todoListResponse)
+    this._todoService.getTodoList().subscribe((todoListResponse: Array<TodoList>) => {
       this.todoList = todoListResponse;
       this._changeDetectorRef.markForCheck();
     })
   }
 
   onDeleteTodo(todoId: string) {
-    this._todoService.deleteTodo(todoId).subscribe((res: TodoListId) => {
+    this._todoService.deleteTodo(todoId).subscribe((res: TodoList) => {
       this._changeDetectorRef.markForCheck();
     })
   }
