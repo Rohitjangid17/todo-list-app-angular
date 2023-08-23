@@ -1,51 +1,58 @@
-<div class="d-flex flex-column shadow-sm mt-3 todo-list-container">
-    <div class="todo-list-scroll">
-        <!-- Header start here -->
-        <div class="todo-list-header border-bottom inventory-grid bg-success">
-            <!-- ID Header -->
-            <div class="fw-semibold text-white">Sr. No.</div>
+<ng-container *ngIf="todoList.length > 0; else noTodo">
+    <div class="d-flex flex-column shadow-sm mt-3 todo-list-container">
+        <div class="todo-list-scroll">
+            <!-- Header start here -->
+            <div class="todo-list-header border-bottom inventory-grid bg-success">
+                <!-- ID Header -->
+                <div class="fw-semibold text-white">Sr. No.</div>
 
-            <!-- Name Header -->
-            <div class="fw-semibold text-white">Name</div>
+                <!-- Name Header -->
+                <div class="fw-semibold text-white">Name</div>
 
-            <!-- Email Header -->
-            <div class="fw-semibold text-white">Email</div>
+                <!-- Email Header -->
+                <div class="fw-semibold text-white">Email</div>
 
-            <!-- Mobile Number Header -->
-            <div class="fw-semibold text-white">Mobile Number</div>
+                <!-- Mobile Number Header -->
+                <div class="fw-semibold text-white">Mobile Number</div>
 
-            <!-- Action Header -->
-            <div class="fw-semibold text-white">Action</div>
-        </div>
-        <!-- Header end here -->
+                <!-- Action Header -->
+                <div class="fw-semibold text-white">Action</div>
+            </div>
+            <!-- Header end here -->
 
-        <!-- Row start here -->
-        <div class="bg-white todo-list-screen">
-            <ng-container *ngFor="let todo of todoList">
-                <div class="todo-list-row border-bottom inventory-grid">
-                    <!-- ID Row -->
-                    <div>1</div>
+            <!-- Row start here -->
+            <div class="bg-white todo-list-screen">
+                <ng-container *ngFor="let todo of todoList">
+                    <div class="todo-list-row border-bottom inventory-grid">
+                        <!-- ID Row -->
+                        <div>1</div>
 
-                    <!-- Name Row -->
-                    <div>{{todo?.name}}</div>
+                        <!-- Name Row -->
+                        <div>{{todo?.name}}</div>
 
-                    <!-- Email Row -->
-                    <div>{{todo?.emailId}}</div>
+                        <!-- Email Row -->
+                        <div>{{todo?.emailId}}</div>
 
-                    <!-- Mobile Number Row -->
-                    <div>{{todo?.phoneNumber}}</div>
+                        <!-- Mobile Number Row -->
+                        <div>{{todo?.phoneNumber}}</div>
 
-                    <!-- Action Row -->
-                    <div>
-                        <div class="d-flex gap-1">
-                            <mat-icon class="text-danger delete-material-icon">delete</mat-icon>
-                            <mat-icon class="text-primary edit-material-icon">editPencil</mat-icon>
+                        <!-- Action Row -->
+                        <div>
+                            <div class="d-flex gap-1">
+                                <mat-icon class="text-danger delete-material-icon">delete</mat-icon>
+                                <mat-icon class="text-primary edit-material-icon">editPencil</mat-icon>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </ng-container>
-
+                </ng-container>
+            </div>
+            <!-- Row end here -->
         </div>
-        <!-- Row end here -->
     </div>
-</div>
+</ng-container>
+
+<ng-template #noTodo>
+    <div>
+        <p class="text-center fs-5 pt-5">No Have Todo!, Please Add</p>
+    </div>
+</ng-template>
