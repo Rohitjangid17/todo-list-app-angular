@@ -34,23 +34,21 @@ export class TodoFormComponent implements OnInit {
       phoneNumber: this.todoForm.get('phoneNumber')?.value
     }
     if (!this.mode) {
-      console.log("crete case")
-
       this._todoService.todoAdd(todoListData).subscribe((todoResponse: TodoDetails) => {
         this._changeDetectorRef.markForCheck();
       })
     } else {
-      this._todoService.updateTodo(this.currentId, todoListData).subscribe((res) => {
+      this._todoService.updateTodo(this.currentId, todoListData).subscribe((todoResponse: TodoDetails) => {
         this._changeDetectorRef.markForCheck();
       })
     }
   }
 
-  onEditMode(event: boolean) {
-    this.mode = event
+  onEditMode(editMode: boolean) {
+    this.mode = editMode;
   }
 
-  selectedId(event: string) {
-    this.currentId = event;
+  selectedId(selectedId: string) {
+    this.currentId = selectedId;
   }
 }

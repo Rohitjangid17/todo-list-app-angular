@@ -36,18 +36,17 @@ export class TodoScreenComponent implements OnInit {
   }
 
   onUpdateTodo(todoId: string) {
-    this.currentId.emit(todoId)
-    // this.currentId = todoId;
     let currentTodo = this.todoList.find((todo) => {
       return todo.id === todoId;
     });
-
+    
     this.todoForm.setValue({
       name: currentTodo?.name,
       emailId: currentTodo?.emailId,
       phoneNumber: currentTodo?.phoneNumber
     });
-
+    
     this.editMode.emit(true);
+    this.currentId.emit(todoId)
   }
 }
