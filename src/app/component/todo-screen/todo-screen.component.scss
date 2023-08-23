@@ -27,6 +27,16 @@
     border-bottom-right-radius: 15px;
 }
 
+.delete-material-icon {
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.edit-material-icon {
+    font-size: 22px;
+    cursor: pointer;
+}
+
 @media (min-width: 576px) {
     .inventory-grid {
         grid-template-columns: 60px 135px 166px 147px 130px;
