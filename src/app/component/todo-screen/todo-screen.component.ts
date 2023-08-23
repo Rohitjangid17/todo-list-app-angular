@@ -1,8 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { TodoList, TodoListId } from 'src/app/shared/interface/common';
+import {  ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {  TodoListId } from 'src/app/shared/interface/common';
 import { TodoService } from 'src/app/shared/service/todo.service';
-import { pipe } from "rxjs";
-import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-todo-screen',
