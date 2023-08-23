@@ -36,10 +36,14 @@ export class TodoFormComponent implements OnInit {
     if (!this.mode) {
       this._todoService.todoAdd(todoListData).subscribe((todoResponse: TodoDetails) => {
         this._changeDetectorRef.markForCheck();
+      }, (errorRes) => {
+        const errorMessage = errorRes.error.message ?? "Something Went Wrong From Server";
       })
     } else {
       this._todoService.updateTodo(this.currentId, todoListData).subscribe((todoResponse: TodoDetails) => {
         this._changeDetectorRef.markForCheck();
+      }, (errorRes) => {
+        const errorMessage = errorRes.error.message ?? "Something Went Wrong From Server";
       })
     }
   }
