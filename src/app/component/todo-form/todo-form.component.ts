@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms"
 import { Todo, TodoList } from 'src/app/shared/interface/common';
 import { TodoService } from 'src/app/shared/service/todo.service';
@@ -13,7 +13,8 @@ export class TodoFormComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    private _todoService: TodoService
+    private _todoService: TodoService,
+    private _changeDetectorRef: ChangeDetectorRef
   ) {
     this.todoForm = this._formBuilder.group({
       name: ["", Validators.required],
@@ -34,6 +35,7 @@ export class TodoFormComponent implements OnInit {
 
     this._todoService.todoAdd(todoListData).subscribe((todoResponse: TodoList) => {
       console.log(todoResponse);
+      this._changeDetectorRef.markForCheck();
     })
   }
 }

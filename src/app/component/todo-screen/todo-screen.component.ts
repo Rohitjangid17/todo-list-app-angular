@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { TodoList } from 'src/app/shared/interface/common';
 import { TodoService } from 'src/app/shared/service/todo.service';
 import { pipe } from "rxjs";
@@ -13,10 +13,11 @@ export class TodoScreenComponent implements OnInit {
   todoList: TodoList[] = [];
 
   constructor(
-    private _todoService: TodoService
+    private _todoService: TodoService,
+    private _changeDetectorRef: ChangeDetectorRef
   ) { }
 
-  ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
     this.onGetTodoList();
   }
 
@@ -24,6 +25,7 @@ export class TodoScreenComponent implements OnInit {
   onGetTodoList() {
     this._todoService.getTodoList().subscribe((todoListResponse) => {
       this.todoList = todoListResponse;
+      this._changeDetectorRef.markForCheck();
     })
   }
 }
