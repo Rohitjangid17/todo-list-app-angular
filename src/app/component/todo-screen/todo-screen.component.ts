@@ -26,12 +26,16 @@ export class TodoScreenComponent implements OnInit {
     this._todoService.getTodoList().subscribe((todoListResponse: Array<TodoList>) => {
       this.todoList = todoListResponse;
       this._changeDetectorRef.markForCheck();
+    }, (errorRes) => {
+      const errorMessage = errorRes.error.message ?? "Something Went Wrong From Server";
     })
   }
 
   onDeleteTodo(todoId: string) {
     this._todoService.deleteTodo(todoId).subscribe((res: TodoList) => {
       this._changeDetectorRef.markForCheck();
+    }, (errorRes) => {
+      const errorMessage = errorRes.error.message ?? "Something Went Wrong From Server";
     })
   }
 
@@ -39,13 +43,13 @@ export class TodoScreenComponent implements OnInit {
     let currentTodo = this.todoList.find((todo) => {
       return todo.id === todoId;
     });
-    
+
     this.todoForm.setValue({
       name: currentTodo?.name,
       emailId: currentTodo?.emailId,
       phoneNumber: currentTodo?.phoneNumber
     });
-    
+
     this.editMode.emit(true);
     this.currentId.emit(todoId)
   }
