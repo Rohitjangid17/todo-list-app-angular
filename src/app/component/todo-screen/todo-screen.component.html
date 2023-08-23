@@ -22,10 +22,10 @@
 
             <!-- Row start here -->
             <div class="bg-white todo-list-screen">
-                <ng-container *ngFor="let todo of todoList">
+                <ng-container *ngFor="let todo of todoList; let i = index">
                     <div class="todo-list-row border-bottom inventory-grid">
                         <!-- ID Row -->
-                        <div>1</div>
+                        <div>{{i + 1}}</div>
 
                         <!-- Name Row -->
                         <div>{{todo?.name}}</div>
