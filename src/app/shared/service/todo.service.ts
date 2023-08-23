@@ -30,4 +30,8 @@ export class TodoService {
   deleteTodo(id: string): Observable<TodoList> {
     return this._httpClient.delete<TodoList>('https://todo-list-app-angular-458ff-default-rtdb.firebaseio.com/todoList/' + id + '.json');
   }
+
+  updateTodo(id: string, data: TodoDetails): Observable<TodoList> {
+    return this._httpClient.put<TodoList>('https://todo-list-app-angular-458ff-default-rtdb.firebaseio.com/todoList/' + id + '.json', data)
+  }
 }

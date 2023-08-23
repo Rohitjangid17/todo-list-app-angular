@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row justify-content-center justify-content-md-center justify-content-lg-center">
         <div class="col-lg-6 col-md-8 col-sm-12 mt-4">
-            <form class="border p-4 shadow-sm rounded-2 bg-white" [formGroup]="todoForm" (ngSubmit)="onTodoSubmit()">
+            <form class="border p-4 shadow-sm rounded-2 bg-white" [formGroup]="todoForm">
                 <div class="form-group">
                     <label class="form-label">Name</label>
                     <input type="text" name="name" formControlName="name" class="form-control shadow-none rounded-1"
@@ -19,11 +19,22 @@
                     <input type="number" name="number" formControlName="phoneNumber"
                         class="form-control shadow-none rounded-1" placeholder="Enter your mobile number">
                 </div>
-                <button type="submit" class="btn btn-success mt-3 rounded-1 fw-medium" [disabled]="todoForm.invalid">Add
-                    Todo</button>
+                <ng-container *ngIf="!mode; else update">
+                    <button type="submit" class="btn btn-success mt-3 rounded-1 fw-medium" (click)="onTodoAdd()"
+                        [disabled]="todoForm.invalid">
+                        Add Todo
+                    </button>
+                </ng-container>
+                <ng-template #update>
+                    <button type="submit" class="btn btn-success mt-3 rounded-1 fw-medium" (click)="onTodoAdd()"
+                        [disabled]="todoForm.invalid">
+                        Update Todo
+                    </button>
+                </ng-template>
             </form>
         </div>
     </div>
 
-    <app-todo-screen></app-todo-screen>
+    <app-todo-screen [todoForm]="todoForm" (editMode)="onEditMode($event)"
+        (currentId)="selectedId($event)"></app-todo-screen>
 </div>

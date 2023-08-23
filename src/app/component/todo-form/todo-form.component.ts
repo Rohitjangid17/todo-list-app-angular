@@ -9,6 +9,8 @@ import { TodoService } from 'src/app/shared/service/todo.service';
 })
 export class TodoFormComponent implements OnInit {
   todoForm: FormGroup;
+  mode: boolean = false;
+  currentId: string = "";
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -25,15 +27,30 @@ export class TodoFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onTodoSubmit() {
+  onTodoAdd() {
     let todoListData: TodoDetails = {
       name: this.todoForm.get('name')?.value,
       emailId: this.todoForm.get('emailId')?.value,
       phoneNumber: this.todoForm.get('phoneNumber')?.value
     }
+    if (!this.mode) {
+      console.log("crete case")
 
-    this._todoService.todoAdd(todoListData).subscribe((todoResponse: TodoDetails) => {
-      this._changeDetectorRef.markForCheck();
-    })
+      this._todoService.todoAdd(todoListData).subscribe((todoResponse: TodoDetails) => {
+        this._changeDetectorRef.markForCheck();
+      })
+    } else {
+      this._todoService.updateTodo(this.currentId, todoListData).subscribe((res) => {
+        this._changeDetectorRef.markForCheck();
+      })
+    }
+  }
+
+  onEditMode(event: boolean) {
+    this.mode = event
+  }
+
+  selectedId(event: string) {
+    this.currentId = event;
   }
 }
