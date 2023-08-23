@@ -19,7 +19,8 @@
                     <input type="number" name="number" formControlName="phoneNumber"
                         class="form-control shadow-none rounded-1" placeholder="Enter your mobile number">
                 </div>
-                <button type="submit" class="btn btn-success mt-3 rounded-1 fw-medium">Add Todo</button>
+                <button type="submit" class="btn btn-success mt-3 rounded-1 fw-medium" [disabled]="todoForm.invalid">Add
+                    Todo</button>
             </form>
         </div>
     </div>
