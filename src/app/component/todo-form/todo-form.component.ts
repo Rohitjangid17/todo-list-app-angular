@@ -11,6 +11,7 @@ export class TodoFormComponent implements OnInit {
   todoForm: FormGroup;
   mode: boolean = false;
   currentId: string = "";
+  isLoading: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -34,15 +35,21 @@ export class TodoFormComponent implements OnInit {
       phoneNumber: this.todoForm.get('phoneNumber')?.value
     }
     if (!this.mode) {
+      this.isLoading = true;
       this._todoService.todoAdd(todoListData).subscribe((todoResponse: TodoDetails) => {
         this._changeDetectorRef.markForCheck();
+        this.isLoading = false;
       }, (errorRes) => {
+        this.isLoading = false;
         const errorMessage = errorRes.error.message ?? "Something Went Wrong From Server";
       })
     } else {
+      this.isLoading = true;
       this._todoService.updateTodo(this.currentId, todoListData).subscribe((todoResponse: TodoDetails) => {
         this._changeDetectorRef.markForCheck();
+        this.isLoading = false;
       }, (errorRes) => {
+        this.isLoading = false;
         const errorMessage = errorRes.error.message ?? "Something Went Wrong From Server";
       })
     }

@@ -37,4 +37,6 @@
 
     <app-todo-screen [todoForm]="todoForm" (editMode)="onEditMode($event)"
         (currentId)="selectedId($event)"></app-todo-screen>
+
+    <ngx-loading [show]="isLoading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
 </div>
