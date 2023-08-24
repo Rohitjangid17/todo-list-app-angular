@@ -12,6 +12,7 @@ export class TodoScreenComponent implements OnInit {
   todoList: TodoList[] = [];
   @Output() editMode = new EventEmitter<boolean>(false);
   @Output() currentId = new EventEmitter<string>();
+  isLoading: boolean = false;
 
   constructor(
     private _todoService: TodoService,
@@ -32,10 +33,13 @@ export class TodoScreenComponent implements OnInit {
   }
 
   onDeleteTodo(todoId: string) {
+    this.isLoading = true;
     this._todoService.deleteTodo(todoId).subscribe((res: TodoList) => {
       this._changeDetectorRef.markForCheck();
+      this.isLoading = false;
     }, (errorRes) => {
       const errorMessage = errorRes.error.message ?? "Something Went Wrong From Server";
+      this.isLoading = false;
     })
   }
 
